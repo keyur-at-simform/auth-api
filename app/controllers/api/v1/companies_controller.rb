@@ -13,7 +13,8 @@ class Api::V1::CompaniesController < ApiController
   end
 
   def create
-    @company = current_user.companies.new(company_params)
+    @company = Company.new(company_params)
+    # @company = current_user.companies.new(company_params)
     if @company.save
       render json: @company, status: :ok
     else
@@ -49,6 +50,6 @@ class Api::V1::CompaniesController < ApiController
   end
 
   def company_params
-    params.require(:company).permit(:name, :address, :established_year)
+    params.require(:company).permit(:name, :address, :established_year, :user_id)
   end
 end
