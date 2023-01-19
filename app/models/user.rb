@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :companies
   
-  ROLES = %w{super_admin admin manager}
+  ROLES = %w{super_admin admin manager editor collaborator}
 
   def jwt_payload
     super
