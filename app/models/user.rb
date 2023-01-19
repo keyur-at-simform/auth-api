@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_many :companies
+  before_create :set_user_role
   
   ROLES = %w{super_admin admin manager editor collaborator}
 
@@ -18,6 +19,10 @@ class User < ApplicationRecord
     define_method "#{role_name}?" do
       role == role_name
     end
+  end
+
+  def set_user_role
+    self.role = "admin"
   end
   
 end
